@@ -21,7 +21,7 @@ Zhipu AI не выпускает официального Android-клиента
 - Собственный пакет `ru.archeonzero.azchat` вместо `com.zai.wrapper`, своё имя приложения «AZ chat», своя тема `Theme.AZChat` и свой набор иконок (адаптивная иконка, все плотности, версия 512×512 для магазина).
 - `versionCode 20` / `versionName 2.0.0`.
 - Скрипт `build-debug.ps1` больше не привязан к одной машине: `JAVA_HOME` берётся из окружения, путь к SDK — из `local.properties`, APK складывается в `dist/`.
-- **Release-подпись вынесена из репозитория.** `keystore.properties` лежит рядом с ключом (`../keys/`), путь к `.jks` считается относительно него, так что буква диска не важна. Нет файла — release собирается неподписанным, debug это не затрагивает. Пример — `keystore.properties.example`.
+- **Release-подпись вынесена из репозитория.** `keystore.properties` лежит рядом с ключом (`../keys/`), путь к `.jks` считается относительно него, так что буква диска не важна. Нет файла — release собирается неподписанным, debug это не затрагивает. Образец полей — `keystore.properties.example`.
 - **`app/proguard-rules.pro`** сохраняет JS-мосты: без `-keepattributes JavascriptInterface` R8 в release вырезает методы, и приложение собирается, но «Назад», счётчик превью и скачивание `blob:` молча перестают работать.
 - `.gitignore` закрывает `local.properties`, `*.jks`, `*.keystore`, `keystore.properties` и `keys/`; `.gitattributes` фиксирует LF для `gradlew`, CRLF для `.bat` и binary для png/apk/jks.
 
