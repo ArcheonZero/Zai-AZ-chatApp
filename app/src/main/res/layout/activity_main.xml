@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amoled_black"
+    android:fitsSystemWindows="true">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:max="100"
+        android:progress="0"
+        android:progressTint="@color/neon_yellow"
+        android:progressBackgroundTint="@color/deep_blue"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Заменён стандартный androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+         на кастомный ZaiSwipeRefresh: он понимает внутренний скролл чата
+         (SPA-контейнер) и не перехватывает свайп вниз, когда пользователь
+         прокручивает историю сообщений. Refresh срабатывает только на самом
+         верху страницы. Логика в ZaiSwipeRefresh.kt + ZaiScrollBridge в MainActivity. -->
+    <ru.archeonzero.azchat.ZaiSwipeRefresh
+        android:id="@+id/swipeRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" />
+
+    </ru.archeonzero.azchat.ZaiSwipeRefresh>
+
+    <!--
+        FAB "Домой" — компактный (mini, 40dp), в правом верхнем углу
+        со сдвигом вниз на 80dp, чтобы не перекрывать кнопку "Поделиться"
+        и панель приходящих файлов сайта chat.z.ai.
+
+        Чтобы подвинуть ещё:
+          • marginTop — увеличить/уменьшить сдвиг вниз
+          • marginEnd — отодвинуть от правого края
+          • fabSize="mini" (40dp) / "normal" (56dp) / "auto"
+
+        MainActivity.kt менять НЕ нужно — логика FAB прежняя:
+          короткий тап → назад по истории или на главный URL
+          длинный тап  → перезагрузка страницы
+    -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/home"
+        android:src="@drawable/ic_home"
+        app:backgroundTint="@color/emerald_green"
+        app:tint="@color/amoled_black"
+        app:elevation="8dp"
+        app:fabSize="mini"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

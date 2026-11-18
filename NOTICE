@@ -1,0 +1,26 @@
+AZ chat — Android wrapper for chat.z.ai
+Copyright (c) 2026 Archeon Zero
+
+This product is based on the open-source project Zai-app:
+    https://github.com/SHSLabs/Zai-app
+    Copyright (c) 2026 The-JDdev
+    Licensed under the MIT License.
+
+The original MIT license text is reproduced in full in LICENSE, with the
+original copyright notice preserved.
+
+Changes made in this fork (version 2.0.0) include, among others:
+
+- new application id and package: ru.archeonzero.azchat;
+- new application name "AZ chat" and a new launcher icon set;
+- reworked logic for attachment/preview overlays (auto-opened panels are
+  hidden; previews opened by the user stay; hidden nodes are restored on
+  the next intentional tap);
+- saving of blob: downloads through a JavaScript bridge into the system
+  Download folder;
+- scroll-aware pull-to-refresh and a JS scroll bridge;
+- a portable build script (JAVA_HOME from environment, SDK path from
+  local.properties, APK copied to dist/);
+- version 2.0.0 (versionCode 20).
+
+The software is provided "as is", without warranty of any kind. See LICENSE.
